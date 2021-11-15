@@ -130,7 +130,7 @@
         </div>
 
         <div class="photo">
-            <img src="{{ asset('images/Me.jpg')}}" width="20%">
+            <a class="nav-link" href="{{url('/home')}}"><img src="{{ asset('images/Me.jpg')}}" width="20%">
             <p>Jeremy</p>
         </div>
     </body>
