@@ -13,18 +13,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/bootstrap', function () {
     return view('bootstrap');
 });
 
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::get('/addCategory', function () {
     return view('addCategory');
 });
+
+Route::get('/addProduct', function () {
+    return view('addProduct',['categoryID'=>App\Models\Category::all()]);
+});
+Route::post('/addCategory/store',[App\Http\Controllers\CategoryController::class,'add'])->name('addCategory');
+
+Route::post('/addProduct/store',[App\Http\Controllers\ProductController::class,'add'])->name('addProduct');
+
+Route::get('/showCategory',[App\Http\Controllers\CategoryController::class,'view'])->name('showCategory');
+
+Route::get('/showProduct',[App\Http\Controllers\ProductController::class,'view'])->name('showProduct');
+
+Route::get('/deleteProudct/{id}',[App\Http\Controllers\ProductController::class,'delete'])->name('deleteProduct');
 
 Auth::routes();
 
