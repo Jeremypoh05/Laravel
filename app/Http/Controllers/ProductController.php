@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\Models\Product;
 use Session;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
@@ -25,7 +26,7 @@ class ProductController extends Controller
         Session::flash('success',"Product create successfully!");
         Return redirect()->route('showProduct');
     }
-    
+
     public function view(){
         //$viewProduct=Product::all();
         $viewProduct=DB::table('products')
@@ -36,10 +37,47 @@ class ProductController extends Controller
         Return view('showProduct')->with('products',$viewProduct);
     }
 
+
     public function delete($id){
+        
         $deleteProduct=Product::find($id);
         $deleteProduct->delete();
-        Session::flash('success',"Product was delete successfully");
+        Session::flash('success',"Product was delete successfully!");
         Return redirect()->route('showProduct');
     }
+
+    public function edit($id){
+
+        $products=Product::all()->where('id',$id);
+        Return view('editProduct')->with('products',$products)
+                                  ->with('categoryID',Category::all());
+    }
+
+    public function update(){
+
+        $r=request();
+        $products =Product::find($r->productID);
+        
+        if($r->file('productImage')!=''){
+            $image=$r->file('productImage');        
+            $image->move('images',$image->getClientOriginalName());                   
+            $imageName=$image->getClientOriginalName(); 
+            $products->image=$imageName;
+            }    
+        
+        $products->name=$r->productName;
+        $products->description=$r->productDescription;
+        $products->price=$r->productPrice;
+        $products->quantity=$r->productQuantity;
+        $products->CategoryID=$r->CategoryID;
+        $products->save();
+
+        Return redirect()->route('showProduct');
+    }
+
+    public function productdetail($id){
+        $products=Product::all()->where('id',$id);
+        return view('productDetail')->with('products',$products);
+    }
+
 }
