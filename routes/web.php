@@ -41,12 +41,19 @@ Route::get('/deleteProudct/{id}',[App\Http\Controllers\ProductController::class,
 Route::get('editProduct/{id}',[App\Http\Controllers\ProductController::class,'edit'])->name('editProduct');
 // http://localhost/editProduct.php?id=22   localhost/editProduct/22
 
-Route::get('/deleteProudct/{id}',[App\Http\Controllers\ProductController::class,'delete'])->name('deleteProduct');
+Route::post('/updateProduct', [App\Http\Controllers\ProductController::class, 'update'])->name('updateProduct');
 
 Route::get('/productDetail/{id}', [App\Http\Controllers\ProductController::class, 'productdetail'])->name('product.detail');
 
 Route::post('/addCart', [App\Http\Controllers\CartController::class, 'add'])->name('add.to.cart');
     
+Route::get('/myCart', [App\Http\Controllers\CartController::class, 'showMyCart'])->name('show.my.cart');
+
+Route::get('/deleteCart/{id}',[App\Http\Controllers\CartController::class,'delete'])->name('delete.cart.item'); 
+//this route name we can refer to the myCart.blade.php 
+
+Route::post('\checkout', [App\Http\Controllers\PaymentController::class, 'paymentPost'])->name('payment.post');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

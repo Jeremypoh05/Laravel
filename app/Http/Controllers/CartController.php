@@ -37,4 +37,11 @@ class CartController extends Controller
 
         return view('myCart')->with('carts',$carts);
     }
+
+    public function delete($id){
+        $deleteItem=myCart::find($id); //binding record
+        $deleteItem->delete(); //delete record
+        Session::flash('success','Item was remove succesfully');
+        Return redirect()-> route('show.my.cart');
+    }
 }
