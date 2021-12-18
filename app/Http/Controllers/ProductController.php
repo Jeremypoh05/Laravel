@@ -80,4 +80,8 @@ class ProductController extends Controller
         return view('productDetail')->with('products',$products);
     }
 
+    public function viewProduct() {
+        $viewProducts=Product::all(); // apply SQL select * from Product
+        Return view('viewProducts')->with('products',$viewProducts); //filename
+    }
 }

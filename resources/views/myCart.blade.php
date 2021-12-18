@@ -18,7 +18,7 @@
         //console.log('cheking....');   to trigger the for loop is working or not
         // alert(subtotal);  another function to trigger
     }
-
+    
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <div class="row">
@@ -131,6 +131,7 @@
 
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
+
 $(function() {
   var $form = $(".require-validation");
   $('form.require-validation').bind('submit', function(e) {
@@ -176,7 +177,6 @@ $(function() {
       }
   }
 });
-
 </script>
     </div>
     </form>
