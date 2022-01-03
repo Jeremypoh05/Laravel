@@ -57,12 +57,10 @@ Route::post('\checkout', [App\Http\Controllers\PaymentController::class, 'paymen
 //view all products 
 Route::get('/viewProducts',[App\Http\Controllers\ProductController::class, 'viewProduct'])->name('viewProducts');
 
-Route::post('/viewProducts',[App\Http\Controllers\ProductController::class, 'searchProduct'] ) ->name('search.product');
+Auth::routes();
 
-Route::get('/myOrder',[App\Http\Controllers\PaymentController::class, 'viewPaymentProduct'])->name('myOrder');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//generate pdf Report
-Route::get('/pdfReport',[App\Http\Controllers\PDFController::class,'pdfReport'])->name('pdfReport');
 
 Auth::routes();
 

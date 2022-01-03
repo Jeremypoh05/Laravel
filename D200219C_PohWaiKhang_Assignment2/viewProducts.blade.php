@@ -45,7 +45,6 @@
             <img src="{{ asset('images/') }}/{{$product->image}}" alt="">
         <div class="content">
             <h3> {{$product->name}} </h3>
-            <p>{{$product->description}} </p>
             <div class="price">RM {{$product->price}}</p></div>
             <div class="quantity">Quantity <input type="number" min="1" max="10" name="quantity"> Available: {{$product->quantity}}</div><br><br>
             <div class="stars">

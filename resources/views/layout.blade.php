@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="{{url('css/app.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url('css/ecommerce.css')}}">
     <title>Southern Online</title>
   </head>
   <body>
@@ -43,8 +43,9 @@
           <a class="dropdown-item" href="#">Computer Hardware</a>
         </div>
       </li>      
-    </ul>
-    <form class="form-inline my-2 my-lg-0" action="" method="POST">
+    </ul> 
+    <!--We will call the route name search.product at web.php and then trigger the controller name !-->
+    <form class="form-inline my-2 my-lg-0" action="{{route('search.product')}}" method="POST">
       @csrf
       <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>

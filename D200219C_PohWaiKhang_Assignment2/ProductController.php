@@ -10,6 +10,7 @@ use App\Models\Category;
 
 class ProductController extends Controller
 {
+    //add product
     public function add(){
         $r=request();  //received the data by GET or POST mothod 
         $image=$r->file('productImage');        
@@ -27,6 +28,7 @@ class ProductController extends Controller
         Return redirect()->route('showProduct');
     }
 
+    //show products
     public function view(){
         //$viewProduct=Product::all();
         $viewProduct=DB::table('products')
@@ -38,6 +40,7 @@ class ProductController extends Controller
     }
 
 
+    //delete product
     public function delete($id){
         
         $deleteProduct=Product::find($id);
@@ -46,6 +49,7 @@ class ProductController extends Controller
         Return redirect()->route('showProduct');
     }
 
+    //edit product
     public function edit($id){
 
         $products=Product::all()->where('id',$id);
@@ -53,6 +57,7 @@ class ProductController extends Controller
                                   ->with('categoryID',Category::all());
     }
 
+    //update product
     public function update(){
 
         $r=request();
@@ -71,27 +76,20 @@ class ProductController extends Controller
         $products->quantity=$r->productQuantity;
         $products->CategoryID=$r->CategoryID;
         $products->save();
+
         Return redirect()->route('showProduct');
     }
 
+    //show product detail
     public function productdetail($id){
         $products=Product::all()->where('id',$id);
         return view('productDetail')->with('products',$products);
     }
 
+
     //view all product
     public function viewProduct() {
         $viewProducts=Product::all(); // apply SQL select * from Product
         Return view('viewProducts')->with('products',$viewProducts); //filename
-    }
-
-    public function searchProduct(){
-        $r=request();
-        $keyword=$r->keyword; 
-        //select the Database table （products) where the name is same as the keyword
-        //keyword is the input type(name) that declared in the layout.blade so every interface
-        //can use this search function
-        $products=DB::table('products')->where('name','like','%'.$keyword.'%')->get();
-        Return view('viewProducts')->with('products',$products); //filename
     }
 }
